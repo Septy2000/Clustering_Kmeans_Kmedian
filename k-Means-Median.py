@@ -118,23 +118,11 @@ class Clustering:
 
     def start(self):
         print('Running {algorithm} algorithm:\n'.format(algorithm = self.alg))
-
-        # print("################################")
-        # print("# Iteration: 0 (initial setup) #")
-        # print("################################\n")
-        
-        # self.printClusters()
         
         for i in range(1, self.steps):  
-            # print("#################")
-            # print("# Iteration: ", i, "#")
-            # print("#################\n")
-            
             self.assignPoints()
             print("Assignment {i}:".format(i = i))
             self.printClusterPoints()
-
-            # self.printClusters()
 
             self.recalculateClusters()
             print("Update {i}:".format(i = i))
