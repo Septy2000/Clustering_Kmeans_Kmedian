@@ -1,5 +1,4 @@
 import math
-import copy
 # Point class
 # has name, x, y
 class Point:
@@ -84,8 +83,8 @@ class Clustering:
                     newAvgCoords[i] += point.coords[i]
 
             numberOfPoints = len(cluster.points)
-
-            cluster.coords = [coord / numberOfPoints for coord in newAvgCoords]
+            if numberOfPoints > 0:
+                cluster.coords = [coord / numberOfPoints for coord in newAvgCoords]
 
     def printClusters(self):
         for cluster in self.clusterList:
@@ -151,17 +150,18 @@ def setup():
 
     # Add points of type Point("name", [x, y, ... ]); template: Point("A", [2.0, 1.1])
     pointList = [
-                Point("x1", [3.0, 4.0, 2.5]),
-                Point("x2", [4.0, 2.0, 1.0]), 
-                Point("x3", [1.0, 2.0, 5.6]), 
-                Point("x4", [1.0, 1.0, 2.1]), 
-                Point("x5", [1.0, 3.0, 2.2])
+                Point("x0", [3.0, 3.0, 3.0]),
+                Point("x1", [1.0, 1.0, 0.0]), 
+                Point("x2", [2.0, 0.0, 1.0]), 
+                Point("x3", [1.0, -2.0, 0.0]), 
+                Point("x4", [1.0, 0.0, 0.0]),
+                Point("x5", [2.0, 3.0, 3.0])
             ]
 
     # Add initial clusters of type Cluster("name", [x, y, ... ], empty list of points); template: Cluster("C", [1.1, 3.4], list())
     clusterList = [
-                Cluster("C1", [1.0, 1.0, 3.3], list()), 
-                Cluster("C2", [2.0, 4.0, 5.1], list())
+                Cluster("C0", [2.0, 2.0, 0.0], list()), 
+                Cluster("C1", [2.0, 0.5, 0.0], list())
             ]
 
     clustering_alg = Clustering(alg, dimensions,pointList, clusterList, steps)
